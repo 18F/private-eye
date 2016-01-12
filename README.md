@@ -1,17 +1,19 @@
 # Private Eye
 
-A JavaScript plugin to warn users about links to private pages. Places a lock icon next to any links that you specify as private.
+A JavaScript plugin to warn users about links to private pages. Places a lock icon next to any links with any URLs that you specify as private.
+
+At 18F, this is used on public sites that contain links to internal content like private GitHub repositories or Google Docs. Rather than write two versions to redact those links, this allows us to publish new content and give a warning to both staff and external readers.
 
 ## Usage
 
-Compatible with modern browsers (IE 9+).
+Compatible with modern browsers (IE 9+). No dependencies.
 
 ```html
 <script src="private-eye.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     PrivateEye({
-      // list of URLs to match as substrings
+      // list of URLs to match as substrings – can be full URLs, hostnames, etc.
       ignoreUrls: [
         'http://so.me/private/url',
         'anoth.er',
