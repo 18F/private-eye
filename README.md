@@ -29,7 +29,7 @@ Private Eye supports CommonJS, and is thus compatible with [Browserify](http://b
 1. Install the module.
 
     ```bash
-    npm install --save private-eye
+    npm install --save @18f/private-eye
     ```
 
 1. Include in your application:
