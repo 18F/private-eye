@@ -1,0 +1,28 @@
+{
+  "name": "private-eye",
+  "version": "1.0.0",
+  "description": "A JavaScript plugin to warn users about links to private pages.",
+  "main": "private-eye.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/18F/private-eye.git"
+  },
+  "keywords": [
+    "private",
+    "link",
+    "browser",
+    "href"
+  ],
+  "author": {
+    "name": "Aidan Feldman",
+    "email": "aidan.feldman@gsa.gov"
+  },
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/18F/private-eye/issues"
+  },
+  "homepage": "https://github.com/18F/private-eye#readme"
+}
