@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
     ignoreUrls: [
       'http://so.me/private/url',
       'anoth.er',
-      ...
+      // ...
     ]
   });
 }, false );
