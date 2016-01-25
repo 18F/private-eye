@@ -32,7 +32,7 @@
 
         // Only replace the anchor's title if it is empty
         //
-        if ( '' === anchor.title ) {
+        if ( ! anchor.title ) {
 
           anchor.title = linkMessage;
 
