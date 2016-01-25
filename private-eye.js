@@ -6,14 +6,11 @@
     styles.innerHTML = 'a.private-link::after { content: "\\1F512"; font-size: 0.75em; vertical-align: top; }';
     document.body.appendChild(styles);
 
-    var DEFAULT_MESSAGE = "This is a link to a private site, which may or may not be accessible to you.";
-    var hrefValue;
-    var linkMessage;
-
     opts.ignoreUrls.forEach(function(url) {
 
-      hrefValue = url;
-      linkMessage = DEFAULT_MESSAGE;
+      var DEFAULT_MESSAGE = "This is a link to a private site, which may or may not be accessible to you.";
+      var hrefValue;
+      var linkMessage;
 
       // If the `url` is an Object, then parse the properties `message` & `url`
       //
@@ -21,6 +18,11 @@
 
         linkMessage = url.message;
         hrefValue = url.url;
+
+      } else {
+
+        hrefValue = url;
+        linkMessage = DEFAULT_MESSAGE;
 
       }
 
