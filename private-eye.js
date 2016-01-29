@@ -6,23 +6,33 @@
     styles.innerHTML = 'a.private-link::after { content: "\\1F512"; font-size: 0.75em; vertical-align: top; }';
     document.body.appendChild(styles);
 
+    var defaultMessage;
+
+    if ( opts.defaultMessage && 'string' === typeof opts.defaultMessage ) {
+
+      defaultMessage = opts.defaultMessage;
+
+    } else {
+
+      defaultMessage = "This is a link to a private site, which may or may not be accessible to you.";
+    }
+
     opts.ignoreUrls.forEach(function(url) {
 
-      var DEFAULT_MESSAGE = "This is a link to a private site, which may or may not be accessible to you.";
       var hrefValue;
-      var linkMessage;
+      var titleValue;
 
       // If the `url` is an Object, then parse the properties `message` & `url`
       //
       if ( url === Object( url ) ) {
 
-        linkMessage = url.message;
+        titleValue = url.message;
         hrefValue = url.url;
 
       } else {
 
         hrefValue = url;
-        linkMessage = DEFAULT_MESSAGE;
+        titleValue = defaultMessage;
 
       }
 
@@ -34,7 +44,7 @@
         //
         if ( ! anchor.title ) {
 
-          anchor.title = linkMessage;
+          anchor.title = titleValue;
 
         }
 
