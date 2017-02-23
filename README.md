@@ -1,12 +1,10 @@
 # Private Eye
 
-![detective image](assets/detective.png)
+![detective image](assets/img/detective.png)
 
 <!-- c/o https://pixabay.com/en/detective-male-man-profile-156465/ -->
 
-A JavaScript plugin to warn users about links to private pages. Places a :lock: icon next to any links with any URLs that you specify as private, and gives a warning message:
-
-![screenshot](assets/screenshot.png)
+A JavaScript plugin to warn users about links to private pages. Places a :lock: icon next to any links with any URLs that you specify as private, and gives a warning message.
 
 At 18F, this is used on public sites that contain links to internal content like private GitHub repositories or Google Docs. Rather than write two versions to redact those links, this allows us to publish new content and give a warning to both staff and external readers.
 
