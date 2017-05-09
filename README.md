@@ -144,7 +144,3 @@ attribute will have the custom message found in `title`. This use case is
 particularly useful if you HTML page already contains valuable messaging around
 private URLs, or if you'd like to configure the messaging without the need of
 using JavaScript.
-
-## See also
-
-* [Redacting content through 18F Pages](https://github.com/18F/pages-server/blob/master/README.md#publishing-to-internal-and-external-sites-from-the-same-branch)
