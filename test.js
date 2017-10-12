@@ -30,7 +30,7 @@ test('Does not override existing titles but still applies the class', () => {
 
 test('Allows setting a default message', () => {
   // Set up our document body
-  document.body.innerHTML = '<a href="http://example.com" title="existing title">link</a>'
+  document.body.innerHTML = '<a href="http://example.com">link</a>'
 
   PrivateEye({
     ignoreUrls: ['http://example.com'],
