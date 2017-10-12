@@ -14,7 +14,7 @@
   }
 
   var PrivateEye = function(opts) {
-    if (this instanceof PrivateEye) {
+    if (!(this instanceof PrivateEye)) {
       return new PrivateEye(opts);
     }
 
@@ -36,6 +36,8 @@
   };
 
   PrivateEye.prototype.checkLinks = function() {
+    var self = this;
+
     this.opts.ignoreUrls.forEach(function(url) {
       var hrefValue;
       var titleValue;
@@ -46,10 +48,10 @@
         hrefValue = url.url;
       } else {
         hrefValue = url;
-        titleValue = defaultMessage;
+        titleValue = self.defaultMessage;
       }
 
-      var wrapper = (opts.wrapper && typeof opts.wrapper === 'string') ? opts.wrapper + ' ' : '';
+      var wrapper = (self.opts.wrapper && typeof self.opts.wrapper === 'string') ? self.opts.wrapper + ' ' : '';
       var anchors = document.querySelectorAll(wrapper + 'a[href*="' + hrefValue + '"]');
 
       Array.prototype.forEach.call(anchors, function(anchor) {
