@@ -2,9 +2,22 @@
 (function() {
   'use strict';
 
-  var DEFAULT_MESSAGE = 'This is a link to a private site, which may or may not be accessible to you.';
   var STYLES = 'a.private-link::after { content: "\\1F512"; font-size: 0.75em; vertical-align: top; }';
   var STYLES_ID = '_privateEye-styles';
+
+  var DEFAULT_OPTIONS = {
+    DEFAULT_MESSAGE: 'This is a link to a private site, which may or may not be accessible to you.',
+    WRAPPER: ''
+  };
+
+  var isString = function(str) { return !!str && typeof str === 'string'; };
+  var isArray = function(arr) { return !!arr && arr.length; };
+
+  var optionValidators = {
+    defaultMessage: isString,
+    wrapper: isString,
+    ignoreUrls: isArray,
+  };
 
   function setStyles() {
     var styles = document.createElement('style');
@@ -13,24 +26,38 @@
     document.body.appendChild(styles);
   }
 
+  function getOptions(opts) {
+    var newObj = {};
+
+    for (var prop in DEFAULT_OPTIONS) {
+      newObj[prop] = DEFAULT_OPTIONS[prop];
+    }
+
+    for (var prop in opts) {
+      var val = opts[prop];
+
+      if (optionValidators[prop](val)) {
+        newObj[prop] = val;
+      }
+    }
+
+    return newObj;
+  }
+
   var PrivateEye = function(opts) {
+    // The old docs recommend calling this as a function. This is here to detect
+    // those cases and make sure backward compatibility stays intact now that the
+    // new syntax is preferred.
     if (!(this instanceof PrivateEye)) {
       return new PrivateEye(opts);
     }
 
+    // Don't add the styles to the page more than once.
     if (!document.getElementById(STYLES_ID)) {
       setStyles();
     }
 
-    var defaultMessage;
-    if (opts.defaultMessage && 'string' === typeof opts.defaultMessage) {
-      defaultMessage = opts.defaultMessage;
-    } else {
-      defaultMessage = DEFAULT_MESSAGE;
-    }
-
-    this.opts = opts;
-    this.defaultMessage = defaultMessage;
+    this.opts = getOptions(opts);
 
     this.checkLinks();
   };
@@ -43,16 +70,17 @@
       var titleValue;
 
       // If the `url` is an Object, then parse the properties `message` & `url`
-      if (url === Object( url )) {
+      if (url === Object(url)) {
         titleValue = url.message;
         hrefValue = url.url;
       } else {
         hrefValue = url;
-        titleValue = self.defaultMessage;
+        titleValue = self.opts.defaultMessage;
       }
 
-      var wrapper = (self.opts.wrapper && typeof self.opts.wrapper === 'string') ? self.opts.wrapper + ' ' : '';
-      var anchors = document.querySelectorAll(wrapper + 'a[href*="' + hrefValue + '"]');
+      var wrapper = self.opts.wrapper.length ? self.opts.wrapper + ' ' : '';
+      var selector = wrapper + 'a[href*="' + hrefValue + '"]';
+      var anchors = document.querySelectorAll(selector);
 
       Array.prototype.forEach.call(anchors, function(anchor) {
         anchor.className += ' private-link';
