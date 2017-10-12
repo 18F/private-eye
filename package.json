@@ -4,7 +4,8 @@
   "description": "A JavaScript plugin to warn users about links to private pages.",
   "main": "private-eye.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch "
   },
   "repository": {
     "type": "git",
