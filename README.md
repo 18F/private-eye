@@ -145,8 +145,32 @@ particularly useful if you HTML page already contains valuable messaging around
 private URLs, or if you'd like to configure the messaging without the need of
 using JavaScript.
 
+### Target specfic section of the page
+
+To only add the private icon lock onto the a specfic section of the page, pass in a CSS selector via the `wrapper` option.
+
+```js
+document.addEventListener('DOMContentLoaded', function() {
+  PrivateEye({
+    // using the wrapper propety on the opts object - here, limiting to links under a tag with a "private" class"
+    wrapper: '.private',
+    // list of URLs to match as substrings – can be full URLs, hostnames, etc.
+    ignoreUrls: [
+      'http://so.me/private/url',
+      'anoth.er',
+      // ...
+    ]
+  });
+}, false );
+```
+
+```html
+<div class="private">
+    <a href="http://so.me/private/url">A private URL that will get a lock</a>
+</div>
+<a href="http://so.me/private/url">A private URL that will not get a lock</a>
+```
 
 ## Developing
-This project uses `jest` for testing. Tests can be run with `npm test` or `npm test:watch` to rerun tests when files change
 
-
+This project uses `jest` for testing. Tests can be run with `npm test` or `npm test:watch` to rerun tests when files change.
