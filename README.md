@@ -137,15 +137,23 @@ document.addEventListener('DOMContentLoaded', function() {
 <a href="http://so.me/private/url" title="This link is still private and you may not have access to it.">Another private URL</a>
 ```
 
-### Using the Wrappper to target specfic section of the webpage
+In the example above, the customized message is set as a `title` attribute on
+one of the matched `anchor` elements. The first match without a `title`
+attribute will have the base default message. The second match with a `title`
+attribute will have the custom message found in `title`. This use case is
+particularly useful if you HTML page already contains valuable messaging around
+private URLs, or if you'd like to configure the messaging without the need of
+using JavaScript.
 
-This well add the private icon lock onto the a specfic section of the HTML page or specfic links with a certain query selecteor.
+### Target specfic section of the page
+
+To only add the private icon lock onto the a specfic section of the page, pass in a CSS selector via the `wrapper` option.
 
 ```js
 document.addEventListener('DOMContentLoaded', function() {
   PrivateEye({
-    // using the wrapper propety on the opts object
-    warpper: 'private',
+    // using the wrapper propety on the opts object - here, limiting to links under a tag with a "private" class"
+    wrapper: '.private',
     // list of URLs to match as substrings – can be full URLs, hostnames, etc.
     ignoreUrls: [
       'http://so.me/private/url',
@@ -157,16 +165,8 @@ document.addEventListener('DOMContentLoaded', function() {
 ```
 
 ```html
-<!-- This can be a 'id' as well ex: 'id="private"' -->
-<div class='private'>
-    <a href='http://so.me/private/url'>A private URL</a>
+<div class="private">
+    <a href="http://so.me/private/url">A private URL that will get a lock</a>
 </div>
+<a href="http://so.me/private/url">A private URL that will not get a lock</a>
 ```
-
-In the example above, the customized message is set as a `title` attribute on
-one of the matched `anchor` elements. The first match without a `title`
-attribute will have the base default message. The second match with a `title`
-attribute will have the custom message found in `title`. This use case is
-particularly useful if you HTML page already contains valuable messaging around
-private URLs, or if you'd like to configure the messaging without the need of
-using JavaScript.
