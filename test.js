@@ -62,6 +62,7 @@ test('works with multiple links', () => {
     ignoreUrls: ['http://example.com'],
     defaultMessage: 'custom message'
   })
+
   const links = document.body.querySelectorAll('a.private-link');
 
   expect(links.length).toEqual(2);
