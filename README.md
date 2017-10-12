@@ -43,7 +43,7 @@ containing an `ignoreUrls` property with a list of URLs to match.
 
 ```javascript
 document.addEventListener('DOMContentLoaded', function() {
-  PrivateEye({
+  new PrivateEye({
     // list of URLs to match as substrings – can be full URLs, hostnames, etc.
     ignoreUrls: [
       'http://so.me/private/url',
@@ -170,3 +170,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 <a href="http://so.me/private/url">A private URL that will not get a lock</a>
 ```
+
+## Developing
+
+This project uses `jest` for testing. Tests can be run with `npm test` or `npm test:watch` to rerun tests when files change.
