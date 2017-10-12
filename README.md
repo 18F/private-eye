@@ -137,6 +137,32 @@ document.addEventListener('DOMContentLoaded', function() {
 <a href="http://so.me/private/url" title="This link is still private and you may not have access to it.">Another private URL</a>
 ```
 
+### Using the Wrappper to target specfic section of the webpage
+
+This well add the private icon lock onto the a specfic section of the HTML page or specfic links with a certain query selecteor.
+
+```js
+document.addEventListener('DOMContentLoaded', function() {
+  PrivateEye({
+    // using the wrapper propety on the opts object
+    warpper: 'private',
+    // list of URLs to match as substrings – can be full URLs, hostnames, etc.
+    ignoreUrls: [
+      'http://so.me/private/url',
+      'anoth.er',
+      // ...
+    ]
+  });
+}, false );
+```
+
+```html
+<!-- This can be a 'id' as well ex: 'id="private"' -->
+<div class='private'>
+    <a href='http://so.me/private/url'>A private URL</a>
+</div>
+```
+
 In the example above, the customized message is set as a `title` attribute on
 one of the matched `anchor` elements. The first match without a `title`
 attribute will have the base default message. The second match with a `title`
