@@ -2,7 +2,7 @@
 (function() {
   'use strict';
 
-  const DEFAULT_MESSAGE = "This is a link to a private site, which may or may not be accessible to you.";
+  var DEFAULT_MESSAGE = "This is a link to a private site, which may or may not be accessible to you.";
 
   var PrivateEye = function(opts) {
     var styles = document.createElement('style');
