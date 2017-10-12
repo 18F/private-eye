@@ -29,8 +29,8 @@
         titleValue = defaultMessage;
       }
 
-      var wrapper = (opts.wrapper && typeof opts.wrapper === 'string') ? opts.wrapper : '';
-      var anchors = document.querySelectorAll(wrapper + ' a[href*="' + hrefValue + '"]');
+      var wrapper = (opts.wrapper && typeof opts.wrapper === 'string') ? opts.wrapper + ' ' : '';
+      var anchors = document.querySelectorAll(wrapper + 'a[href*="' + hrefValue + '"]');
       Array.prototype.forEach.call(anchors, function(anchor) {
         anchor.className += ' private-link';
 
