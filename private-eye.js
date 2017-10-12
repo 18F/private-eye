@@ -2,21 +2,41 @@
 (function() {
   'use strict';
 
-  var DEFAULT_MESSAGE = "This is a link to a private site, which may or may not be accessible to you.";
+  var DEFAULT_MESSAGE = 'This is a link to a private site, which may or may not be accessible to you.';
+  var STYLES = 'a.private-link::after { content: "\\1F512"; font-size: 0.75em; vertical-align: top; }';
+  var STYLES_ID = '_privateEye-styles';
+
+  function setStyles() {
+    var styles = document.createElement('style');
+    styles.innerHTML = STYLES;
+    styles.id = STYLES_ID;
+    document.body.appendChild(styles);
+  }
 
   var PrivateEye = function(opts) {
-    var styles = document.createElement('style');
-    styles.innerHTML = 'a.private-link::after { content: "\\1F512"; font-size: 0.75em; vertical-align: top; }';
-    document.body.appendChild(styles);
+    if (this instanceof PrivateEye) {
+      return new PrivateEye(opts);
+    }
+
+    if (!document.getElementById(STYLES_ID)) {
+      setStyles();
+    }
 
     var defaultMessage;
-    if ( opts.defaultMessage && 'string' === typeof opts.defaultMessage ) {
+    if (opts.defaultMessage && 'string' === typeof opts.defaultMessage) {
       defaultMessage = opts.defaultMessage;
     } else {
       defaultMessage = DEFAULT_MESSAGE;
     }
 
-    opts.ignoreUrls.forEach(function(url) {
+    this.opts = opts;
+    this.defaultMessage = defaultMessage;
+
+    this.checkLinks();
+  };
+
+  PrivateEye.prototype.checkLinks = function() {
+    this.opts.ignoreUrls.forEach(function(url) {
       var hrefValue;
       var titleValue;
 
@@ -31,6 +51,7 @@
 
       var wrapper = (opts.wrapper && typeof opts.wrapper === 'string') ? opts.wrapper + ' ' : '';
       var anchors = document.querySelectorAll(wrapper + 'a[href*="' + hrefValue + '"]');
+
       Array.prototype.forEach.call(anchors, function(anchor) {
         anchor.className += ' private-link';
 
@@ -40,7 +61,7 @@
         }
       });
     });
-  };
+  }
 
   if (typeof module === 'object' && typeof module.exports === 'object') {
     module.exports = PrivateEye;
