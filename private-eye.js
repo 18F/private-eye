@@ -30,13 +30,18 @@
       }
 
       var wrapper = (opts.wrapper && typeof opts.wrapper === 'string') ? opts.wrapper + ' ' : '';
-      var anchors = document.querySelectorAll(wrapper + 'a[href*="' + hrefValue + '"]');
-      Array.prototype.forEach.call(anchors, function(anchor) {
-        anchor.className += ' private-link';
+      var anchors = document.querySelectorAll(wrapper + 'a');
 
-        // Only replace the anchor's title if it is empty
-        if (!anchor.title) {
-          anchor.title = titleValue;
+      Array.prototype.forEach.call(anchors, function(anchor) {
+        // Check to see if link href contains the internal link (case insensitive)
+        if(anchor.href.toLowerCase().indexOf(hrefValue.toLowerCase()) != -1) {
+          anchor.className += ' private-link';
+
+          // Only replace the anchor's title if it is empty
+          //
+          if ( ! anchor.title ) {
+            anchor.title = titleValue;
+          }
         }
       });
     });
