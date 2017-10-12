@@ -54,7 +54,19 @@ test('Does not add the class private link to non-matching urls', () => {
   expect(link.className).toEqual('')
 })
 
-test('works with multiple links')
+test('works with multiple links', () => {
+  // Set up our document body
+  document.body.innerHTML = '<a href="http://example.com">link</a> <a href="http://example.com/some-other-link">another-link link</a>'
+
+  PrivateEye({
+    ignoreUrls: ['http://example.com'],
+    defaultMessage: 'custom message'
+  })
+  const links = document.body.querySelectorAll('a.private-link');
+
+  expect(links.length).toEqual(2);
+})
+
 test('allows setting per link messages')
 test('is case insensitive')
 
