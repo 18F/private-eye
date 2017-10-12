@@ -17,7 +17,7 @@ Compatible with modern browsers (IE 9+). No dependencies.
 Private Eye can be included as a normal script on your page, exposing a `PrivateEye` global.
 
 ```html
-<script src="private-eye.js"></script>
+<script src="private-eye.js" defer></script>
 ```
 
 ### CommonJS
