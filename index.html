@@ -19,14 +19,15 @@
         <p>Cat ipsum dolor sit amet, lick the other cats. Plan steps for world domination <a href="https://pages.18f.gov/private-eye/notfound">a private link</a> while this is a <a href="#">public link</a> on your pillow rainbow while flying in a toasted bread costume in space.</p>
         <div class="private">
           <strong>This one should.</strong>
-          <p>Cat ipsum dolor sit amet, lick the other cats. Plan steps for world domination <a href="https://pages.18f.gov/private-eye/notfound">a private link</a> while this is a <a href="#">public link</a> on your pillow rainbow while flying in a toasted bread costume in space.</p>
+          <p>Cat ipsum dolor sit amet, lick the other cats. Plan steps for world domination <a href="https://pages.18f.gov/private-eye/notfound">a private link</a>, <a href="https://PAGES.18f.gov/private-eye/notfound">a private link with MiXedCaSe</a> while this is a <a href="#">public link</a> on your pillow rainbow while flying in a toasted bread costume in space.</p>
+
         </div>
         <h3>Code</h3>
         <code><pre>
 &lt;script src="private-eye.js">&lt;/script&gt;
 &lt;script&gt;
 document.addEventListener('DOMContentLoaded', function() {
-  new PrivateEye({
+  PrivateEye({
     // list of URLs to match as substrings – can be full URLs, hostnames, etc.
     ignoreUrls: [
       'http://so.me/private/url',

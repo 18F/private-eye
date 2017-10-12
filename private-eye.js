@@ -6,8 +6,8 @@
   var STYLES_ID = '_privateEye-styles';
 
   var DEFAULT_OPTIONS = {
-    DEFAULT_MESSAGE: 'This is a link to a private site, which may or may not be accessible to you.',
-    WRAPPER: ''
+    defaultMessage: 'This is a link to a private site, which may or may not be accessible to you.',
+    wrapper: ''
   };
 
   var isString = function(str) { return !!str && typeof str === 'string'; };
@@ -79,15 +79,19 @@
       }
 
       var wrapper = self.opts.wrapper.length ? self.opts.wrapper + ' ' : '';
-      var selector = wrapper + 'a[href*="' + hrefValue + '"]';
+      var selector = wrapper + 'a';
       var anchors = document.querySelectorAll(selector);
 
       Array.prototype.forEach.call(anchors, function(anchor) {
-        anchor.className += ' private-link';
+        var anchorHref = anchor.href.toLowerCase().trim();
 
-        // Only replace the anchor's title if it is empty
-        if (!anchor.title) {
-          anchor.title = titleValue;
+        if (anchorHref.indexOf(hrefValue.toLowerCase()) !== -1) {
+          anchor.className += ' private-link';
+
+          // Only replace the anchor's title if it is empty
+          if (!anchor.title) {
+            anchor.title = titleValue;
+          }
         }
       });
     });
