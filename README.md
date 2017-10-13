@@ -173,4 +173,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 ## Developing
 
-This project uses `jest` for testing. Tests can be run with `npm test` or `npm test:watch` to rerun tests when files change.
+To get started developing, simply clone this repo and you're ready. Private Eye has no dependencies and does not have a build process. All code for Private Eye is located in `private-eye.js`.
+
+This project uses `jest` for testing. First, run `npm install` which will install jest. Tests can be run with `npm test` or `npm test:watch` to rerun tests when files change.
