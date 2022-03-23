@@ -1,12 +1,12 @@
 declare module '@18f/private-eye' {
   export interface PrivateEyeOptions {
-    defaultMessage: string;
-    wrapper: string;
+    defaultMessage?: string;
+    wrapper?: string;
     ignoreUrls: string[];
   }
 
   export default class PrivateEye {
-    constructor(options?: Partial<PrivateEyeOptions>);
+    constructor(options: PrivateEyeOptions);
 
     checkLinks(): void;
   }
