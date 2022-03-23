@@ -27,6 +27,6 @@
   },
   "homepage": "https://github.com/18F/private-eye#readme",
   "devDependencies": {
-    "jest": "^23.6.0"
+    "jest": "^27.5.1"
   }
 }

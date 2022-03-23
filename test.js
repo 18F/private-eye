@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 const PrivateEye = require("./private-eye.js");
 
 test('Adds the class private-link and title to matching urls', () => {
