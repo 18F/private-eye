@@ -68,7 +68,7 @@ object passed into `PrivateEye( { /*...*/ } );`.
 
 ```javascript
 document.addEventListener('DOMContentLoaded', function() {
-  PrivateEye({
+  new PrivateEye({
     // Update the default message to a custom `string`.
     defaultMessage: "This link is secured, please ensure you have the proper credentials to access it."
     ignoreUrls: [
@@ -91,7 +91,7 @@ for the URL to match and the message to display respectively.
 
 ```javascript
 document.addEventListener('DOMContentLoaded', function() {
-  PrivateEye({
+  new PrivateEye({
     ignoreUrls: [
       'http://so.me/private/url',
       // Custom messages for individual URLs are passed in as an object.
@@ -119,7 +119,7 @@ used to customize individual `anchor` elements on a more granular level.
 ```javascript
 // Set up for the plugin is the same as "Basic Usage" above.
 document.addEventListener('DOMContentLoaded', function() {
-  PrivateEye({
+  new PrivateEye({
     // list of URLs to match as substrings – can be full URLs, hostnames, etc.
     ignoreUrls: [
       'http://so.me/private/url',
@@ -151,7 +151,7 @@ To only add the private icon lock onto the a specfic section of the page, pass i
 
 ```js
 document.addEventListener('DOMContentLoaded', function() {
-  PrivateEye({
+  new PrivateEye({
     // using the wrapper propety on the opts object - here, limiting to links under a tag with a "private" class"
     wrapper: '.private',
     // list of URLs to match as substrings – can be full URLs, hostnames, etc.
