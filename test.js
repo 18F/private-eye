@@ -8,7 +8,7 @@ test('Adds the class private-link and title to matching urls', () => {
   // Set up our document body
   document.body.innerHTML = '<a href="http://example.com">link</a>'
 
-  PrivateEye({
+  new PrivateEye({
     ignoreUrls: ["http://example.com"]
   })
   const link = document.body.querySelector("a");
@@ -21,7 +21,7 @@ test('Does not override existing titles but still applies the class', () => {
   // Set up our document body
   document.body.innerHTML = '<a href="http://example.com" title="existing title">link</a>'
 
-  PrivateEye({
+  new PrivateEye({
     ignoreUrls: ["http://example.com"]
   });
 
@@ -36,7 +36,7 @@ test('Allows setting a default message', () => {
   // Set up our document body
   document.body.innerHTML = '<a href="http://example.com">link</a>'
 
-  PrivateEye({
+  new PrivateEye({
     ignoreUrls: ['http://example.com'],
     defaultMessage: 'custom message'
   })
@@ -50,7 +50,7 @@ test('Does not add the class private link to non-matching urls', () => {
   // Set up our document body
   document.body.innerHTML = '<a href="http://some-other-domain.com">link</a>'
 
-  PrivateEye({
+  new PrivateEye({
     ignoreUrls: ['http://example.com']
   })
   const link = document.body.querySelector('a');
@@ -62,7 +62,7 @@ test('works with multiple links', () => {
   // Set up our document body
   document.body.innerHTML = '<a href="http://example.com">link</a> <a href="http://example.com/some-other-link">another-link link</a>'
 
-  PrivateEye({
+  new PrivateEye({
     ignoreUrls: ['http://example.com'],
     defaultMessage: 'custom message'
   })
@@ -74,7 +74,7 @@ test('works with multiple links', () => {
 
 test('allows configuring custom messages for individual URLs', () => {
   document.body.innerHTML = '<a href="http://example.com">link</a> <a href="http://anoth.er/some-other-link">another-link link</a>';
-  PrivateEye({
+  new PrivateEye({
     ignoreUrls: [
       'http://example.com',
       {
@@ -92,7 +92,7 @@ test('allows configuring custom messages for individual URLs', () => {
 
 test('setting a custom message for an individual URL doesnt override the title', () => {
   document.body.innerHTML = '<a href="http://anoth.er/" title="dont override me">link</a><a href="http://anoth.er/some-other-link">another-link link</a>';
-  PrivateEye({
+  new PrivateEye({
     ignoreUrls: [
       {
         url: 'anoth.er',
@@ -109,7 +109,7 @@ test('setting a custom message for an individual URL doesnt override the title',
 
 test('link matching is case insensitive', () => {
   document.body.innerHTML = '<a href="http://EXAMPLE.COM">link</a> <a href="http://anoth.er/some-other-link">another-link link</a>';
-  PrivateEye({
+  new PrivateEye({
     ignoreUrls: [
       'http://example.com',
       'aNoTh.Er'
@@ -126,7 +126,7 @@ test('only modifies links within wrapper', function(){
     <a href="http://example.com/some-other-link">another-link link</a>\
   ';
 
-  PrivateEye({
+  new PrivateEye({
     wrapper: '.wrapper',
     ignoreUrls: [
       'http://example.com'
@@ -136,4 +136,16 @@ test('only modifies links within wrapper', function(){
   const links = document.body.querySelectorAll('a.private-link');
   expect(links.length).toEqual(1);
   expect(links[0].href).toEqual('http://example.com/');
+});
+
+test('can be called as a function', () => {
+  // Set up our document body
+  document.body.innerHTML = '<a href="http://example.com">link</a>'
+
+  PrivateEye({
+    ignoreUrls: ["http://example.com"]
+  })
+  const link = document.body.querySelector("a");
+
+  expect(link.className).toEqual(expect.stringContaining("private-link"))
 });
