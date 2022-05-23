@@ -1,6 +1,6 @@
 {
   "name": "@18f/private-eye",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "A JavaScript plugin to warn users about links to private pages.",
   "main": "private-eye.js",
   "scripts": {
@@ -27,6 +27,6 @@
   },
   "homepage": "https://github.com/18F/private-eye#readme",
   "devDependencies": {
-    "jest": "^23.6.0"
+    "jest": "^27.5.1"
   }
 }
